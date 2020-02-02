@@ -12,7 +12,8 @@ import (
 func TestNewRouter(t *testing.T) {
 	t.Run("responds with a 405 for invalid methods for routes", func(t *testing.T) {
 		handler := http.HandlerFunc(func(rw http.ResponseWriter, req *http.Request) {
-			rw.Write([]byte("test"))
+			_, err := rw.Write([]byte("test"))
+			require.Nil(t, err)
 		})
 
 		route := Route{
@@ -52,7 +53,8 @@ func TestNewRouter(t *testing.T) {
 		}
 
 		handler := http.HandlerFunc(func(rw http.ResponseWriter, req *http.Request) {
-			rw.Write([]byte("test"))
+			_, err := rw.Write([]byte("test"))
+			require.Nil(t, err)
 		})
 
 		route := Route{
@@ -80,7 +82,8 @@ func TestNewRouter(t *testing.T) {
 
 	t.Run("for invalid route methods it defaults to GET", func(t *testing.T) {
 		handler := http.HandlerFunc(func(rw http.ResponseWriter, req *http.Request) {
-			rw.Write([]byte("test"))
+			_, err := rw.Write([]byte("test"))
+			require.Nil(t, err)
 		})
 
 		route := Route{
