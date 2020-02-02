@@ -14,11 +14,11 @@ type Application struct {
 func NewApplication() *Application {
 	app := new(Application)
 	routes := []server.Route{
-		{Method: "GET", Path: "/health", Handler: app.V1HealthHandler},
-		{Method: "GET", Path: "/v1/health", Handler: app.V1HealthHandler},
+		{Method: http.MethodGet, Path: "/health", Handler: app.V1HealthHandler},
+		{Method: http.MethodGet, Path: "/v1/health", Handler: app.V1HealthHandler},
 	}
 
-	app.Router = server.NewRouter(routes)
+	app.Router = server.NewRouter(routes...)
 	return app
 }
 
