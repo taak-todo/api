@@ -8,14 +8,14 @@ import (
 	"github.com/go-chi/chi/middleware"
 )
 
-// RequestLogger implements chi.LogFormatter to log requests via Apex log.
+// RequestLogger implements Chi middleware.LogFormatter to log requests via Apex log.
 type RequestLogger struct{}
 
 func (rl RequestLogger) NewLogEntry(req *http.Request) middleware.LogEntry {
 	return RequestLogEntry{Request: req}
 }
 
-// RequestLogEntry handles logging requests and panics from Chi to Apex log.
+// RequestLogEntry implements Chi middleware.LogEntry to log requests and panics via Apex log.
 type RequestLogEntry struct {
 	Request *http.Request
 }
